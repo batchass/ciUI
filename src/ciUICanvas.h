@@ -152,9 +152,13 @@ public:
                 writeSpecificWidgetData(widgetsWithState[i], widget); 
                 settings.push_back( widget );
             }
-            std::string filePath = "settings/"+fileName;
+
+		
+            std::string filePath = ( getAssetPath("") / fileName ).string();
 #if defined( CINDER_COCOA )
             filePath = ci::app::App::getResourcePath().string()+"/"+filePath;
+#else
+
 #endif
             settings.write( writeFile( filePath , true) );
         }
@@ -252,7 +256,9 @@ public:
     {
         try
         {
-            std::string filePath = "settings/"+fileName;
+			std::string filePath = ( getAssetPath("") / fileName ).string();
+
+            //std::string filePath = "settings/"+fileName;
 #if defined( CINDER_COCOA )
             filePath = ci::app::App::getResourcePath().string()+"/"+filePath;
 #endif
