@@ -401,8 +401,8 @@ public:
     {
         bool large = updateFont(CI_UI_FONT_LARGE, filename, CI_UI_FONT_LARGE_SIZE);
         bool medium = updateFont(CI_UI_FONT_MEDIUM, filename, CI_UI_FONT_MEDIUM_SIZE);
-        bool small = updateFont(CI_UI_FONT_SMALL, filename, CI_UI_FONT_SMALL_SIZE);
-        bool successful = large && medium && small;
+        bool smallf = updateFont(CI_UI_FONT_SMALL, filename, CI_UI_FONT_SMALL_SIZE);
+        bool successful = large && medium && smallf;
         if( successful ) fontName = filename;
         return successful;
     }
