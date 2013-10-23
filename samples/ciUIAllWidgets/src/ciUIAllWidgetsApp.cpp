@@ -49,6 +49,8 @@ public:
     float menuHeight; 
     float widgetWidth;
     float dim; 
+	string						mImageFile;
+
 };
 
 Renderer* ciUIAllWidgetsApp::prepareRenderer()
@@ -66,9 +68,9 @@ void ciUIAllWidgetsApp::setup()
 {
     gl::enableAlphaBlending(); 
 	setFpsSampleInterval(1.0); 
-
-    mImage = loadImage( loadResource( SAMPLE_IMAGE ) ); 
-    mImageSurface = loadImage ( loadResource( SAMPLE_IMAGE ) );
+	mImageFile = "background.jpg";
+    mImage = loadImage( loadAsset( mImageFile ) ); 
+    mImageSurface = loadImage ( loadAsset( mImageFile ) );
     buffer = new float[128];
     menuWidth = getWindowWidth()/3.0; 
     menuHeight = getWindowHeight();

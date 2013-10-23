@@ -132,10 +132,10 @@ public:
         }
         
         
-        track = loadImage(coreURL+"track"+extension);                 //back
-        progress = loadImage(coreURL+"progress"+extension);           //fill
-        handle = loadImage(coreURL+"handle"+extension);               //handle        
-        handleDown = loadImage(coreURL+"handledown"+extension);       //handleOver State                        
+        track = loadImage(loadAsset(coreURL+"track"+extension));                 //back
+        progress = loadImage(loadAsset(coreURL+"progress"+extension));           //fill
+        handle = loadImage(loadAsset(coreURL+"handle"+extension));               //handle        
+        handleDown = loadImage(loadAsset(coreURL+"handledown"+extension));       //handleOver State                        
         
         handleHalfWidth = handle.getWidth()*.5f;
         handleHalfHeight = handle.getHeight()*.5f;

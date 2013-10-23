@@ -41,7 +41,7 @@
 
 #include <vector>
 #include <map>
-
+//using namespace ci::app;
 class ciUICanvas : public ciUIWidget
 {    
 public:	
@@ -513,9 +513,9 @@ public:
 	//Touch Callbacks
     void enableTouchEventCallbacks()
     {
-		mCbTouchesBegan = mApp->getWindow()->getSignalTouchesBegan().connect( std::bind( &ciUICanvas::canvasTouchesBegan, this, std::_1 ) );
-		mCbTouchesMoved = mApp->getWindow()->getSignalTouchesMoved().connect( std::bind( &ciUICanvas::canvasTouchesMoved, this, std::_1 ) );
-		mCbTouchesEnded = mApp->getWindow()->getSignalTouchesEnded().connect( std::bind( &ciUICanvas::canvasTouchesEnded, this, std::_1 ) );
+		mCbTouchesBegan = mApp->getWindow()->getSignalTouchesBegan().connect( std::bind( &ciUICanvas::canvasTouchesBegan, this, std::placeholders::_1 ) );
+		mCbTouchesMoved = mApp->getWindow()->getSignalTouchesMoved().connect( std::bind( &ciUICanvas::canvasTouchesMoved, this, std::placeholders::_1 ) );
+		mCbTouchesEnded = mApp->getWindow()->getSignalTouchesEnded().connect( std::bind( &ciUICanvas::canvasTouchesEnded, this, std::placeholders::_1 ) );
     }	
 
 	void disableTouchEventCallbacks()
@@ -530,10 +530,10 @@ public:
 	//Mouse Callbacks
     void enableMouseEventCallbacks()
     {
-		mCbMouseDown = mApp->getWindow()->getSignalMouseDown().connect( std::bind( &ciUICanvas::canvasMouseDown, this, std::_1 ) );
-		mCbMouseUp = mApp->getWindow()->getSignalMouseUp().connect( std::bind( &ciUICanvas::canvasMouseUp, this, std::_1 ) );
-		mCbMouseMove = mApp->getWindow()->getSignalMouseMove().connect( std::bind( &ciUICanvas::canvasMouseMove, this, std::_1 ) );
-		mCbMouseDrag = mApp->getWindow()->getSignalMouseDrag().connect( std::bind( &ciUICanvas::canvasMouseDrag, this, std::_1 ) );
+		mCbMouseDown = mApp->getWindow()->getSignalMouseDown().connect( std::bind( &ciUICanvas::canvasMouseDown, this, std::placeholders::_1 ) );
+		mCbMouseUp = mApp->getWindow()->getSignalMouseUp().connect( std::bind( &ciUICanvas::canvasMouseUp, this, std::placeholders::_1 ) );
+		mCbMouseMove = mApp->getWindow()->getSignalMouseMove().connect( std::bind( &ciUICanvas::canvasMouseMove, this, std::placeholders::_1 ) );
+		mCbMouseDrag = mApp->getWindow()->getSignalMouseDrag().connect( std::bind( &ciUICanvas::canvasMouseDrag, this, std::placeholders::_1 ) );
     }
 
 	//Mouse Callbacks
@@ -548,8 +548,8 @@ public:
     //KeyBoard Callbacks
 	void enableKeyEventCallbacks()
 	{
-		mCbKeyDown = mApp->getWindow()->getSignalKeyDown().connect( std::bind( &ciUICanvas::canvasKeyDown, this, std::_1 ) );
-		mCbKeyUp = mApp->getWindow()->getSignalKeyUp().connect( std::bind( &ciUICanvas::canvasKeyUp, this, std::_1 ) );
+		mCbKeyDown = mApp->getWindow()->getSignalKeyDown().connect( std::bind( &ciUICanvas::canvasKeyDown, this, std::placeholders::_1 ) );
+		mCbKeyUp = mApp->getWindow()->getSignalKeyUp().connect( std::bind( &ciUICanvas::canvasKeyUp, this, std::placeholders::_1 ) );
 	}
 
 	//KeyBoard Callbacks
@@ -2142,7 +2142,8 @@ protected:
     app::AppCocoaTouch *mApp;
     ci::CallbackId mCbTouchesBegan, mCbTouchesMoved, mCbTouchesEnded; 
 #else
-    app::App *mApp;
+    //app::App *mApp;
+    App *mApp;
 
     ci::signals::scoped_connection mCbMouseDown, mCbMouseDrag, mCbMouseUp, mCbMouseMove;
     ci::signals::scoped_connection mCbKeyDown, mCbKeyUp;
