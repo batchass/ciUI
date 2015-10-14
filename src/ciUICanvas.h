@@ -40,7 +40,8 @@
 
 #include <vector>
 #include <map>
-//using namespace ci::app;
+//
+using namespace ci::app;
 class ciUICanvas : public ciUIWidget
 {    
 public:	
@@ -93,7 +94,7 @@ public:
 #if defined( CINDER_COCOA_TOUCH )
         mApp = (app::AppCocoaTouch *) app::App::get();                 
 #else
-        mApp = app::App::get();                 
+		mApp = app::App::get();
 #endif 
 
 		enabled = false; 		
