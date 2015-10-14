@@ -1,6 +1,4 @@
-ciUI is a Block for Cinder (version 0.8.4) that easily allows for the creation of user interfaces aka GUIs. ciUI also takes care of varible binding, widget layout, spacing, font loading, saving and loading settings, and callbacks. ciUI can be easily customized (UI themes, colors, font & widget sizes, padding, layout, etc).
-
-Read more about how it came to be here: http://www.syedrezaali.com/blog/?p=2366
+ciUI is a Block for Cinder (version 0.8.6) that easily allows for the creation of user interfaces aka GUIs. ciUI also takes care of varible binding, widget layout, spacing, font loading, saving and loading settings, and callbacks. ciUI can be easily customized (UI themes, colors, font & widget sizes, padding, layout, etc).
 
 Check out images here: http://www.flickr.com/photos/44532783@N04/sets/72157630538746416/
 
