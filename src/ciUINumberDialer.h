@@ -190,7 +190,7 @@ public:
             {
                 *value = min; 
             }            
-            hitPoint = Vec2f((float) x, (float) y); 
+            hitPoint = vec2((float) x, (float) y); 
     
             setTextString(numToString(*value, precision));     
 			triggerEvent(this);             
@@ -208,7 +208,7 @@ public:
         if(rect->inside((float) x, (float) y))
         {
             hit = true; 
-            hitPoint = Vec2f((float) x, (float) y); 
+            hitPoint = vec2((float) x, (float) y); 
             currentPrecisionZone = ceil(ci::lmap<float>(x,rect->getX(),rect->getX()+rect->getWidth(),0,numOfPrecisionZones));             
             zoneMultiplier = pow(10.0f, numOfPrecisionZones-currentPrecisionZone-precision);     
             state = CI_UI_STATE_DOWN;     
@@ -420,7 +420,7 @@ protected:    //inherited: ciUIRectangle *rect; ciUIWidget *parent;
 	float *value;  
     bool useReference;     
 	float max, min; 
-    Vec2f hitPoint; 
+	vec2 hitPoint;
     int numOfPrecisionZones; 
     int currentPrecisionZone;
     

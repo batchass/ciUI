@@ -482,9 +482,9 @@ public:
         return min; 
     }
     
-    Vec2f getMaxAndMind()
+	vec2 getMaxAndMind()
     {
-        return Vec2f(max, min); 
+		return vec2(max, min);
     }
     
     void setMaxAndMin(float _max, float _min)

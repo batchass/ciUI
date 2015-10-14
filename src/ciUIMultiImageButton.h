@@ -105,9 +105,9 @@ public:
             extension = _pathURL.substr(found);
         }
         
-        back = loadImage(loadAsset(_pathURL));
-        over = loadImage(loadAsset(coreURL+"over"+extension));         
-        on = loadImage(loadAsset(coreURL+"on"+extension));         
+		back = gl::Texture::create(loadImage(loadAsset(_pathURL)));
+		over = gl::Texture::create(loadImage(loadAsset(coreURL + "over" + extension)));
+		on = gl::Texture::create(loadImage(loadAsset(coreURL + "on" + extension)));
     }       
     
    
@@ -186,9 +186,9 @@ public:
     }
     
 protected:    //inherited: ciUIRectangle *rect; ciUIWidget *parent; 
-    gl::Texture back; 
-    gl::Texture over; 
-    gl::Texture on; 
+    gl::TextureRef back; 
+    gl::TextureRef over; 
+    gl::TextureRef on; 
 }; 
 
 #endif

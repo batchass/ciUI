@@ -69,7 +69,7 @@ public:
     }
     
     
-    ciUIRectangle(ci::Vec2f pos, float _w, float _h) 
+    ciUIRectangle(ci::vec2 pos, float _w, float _h) 
     {
         x = pos.x;
         y = pos.y;
@@ -102,7 +102,7 @@ public:
         halfheight = height*.5f;                            
     }
     
-    void set(ci::Vec2f pos, float w, float h)
+    void set(ci::vec2 pos, float w, float h)
     {
         x		= pos.x;
         y		= pos.y;
@@ -132,7 +132,7 @@ public:
         halfheight = height*.5f;                 
     }
     
-    void setFromCenter(ci::Vec2f pos, float w, float h)
+	void setFromCenter(ci::vec2 pos, float w, float h)
     {
         x		= pos.x - w*0.5f;
         y		= pos.y - h*0.5f;
@@ -153,7 +153,7 @@ public:
         return *this;
     }
     
-    ciUIRectangle & operator + (const ci::Vec2f & point)
+	ciUIRectangle & operator + (const ci::vec2 & point)
     {
         x += point.x;
         y += point.y;                 
@@ -194,19 +194,19 @@ public:
 	}
 
     
-    ci::Vec2f getCenter ()
+	ci::vec2 getCenter()
     {
         if(parent !=NULL)
         {
-            return ci::Vec2f((x+parent->getX()) + halfwidth, (y+parent->getY()) + halfheight);
+			return ci::vec2((x + parent->getX()) + halfwidth, (y + parent->getY()) + halfheight);
         }
         else
         {
-            return ci::Vec2f(x + halfwidth, y + halfheight);
+			return ci::vec2(x + halfwidth, y + halfheight);
         }        
     }
     
-    bool inside(ci::Vec2f p)
+	bool inside(ci::vec2 p)
     {    
         if(parent !=NULL)
         {
@@ -248,7 +248,7 @@ public:
         return false;    
     }
 	
-	ci::Vec2f percentInside(float px, float py)				//Assumes your already inside rect 
+	ci::vec2 percentInside(float px, float py)				//Assumes your already inside rect 
 	{
 		if(parent != NULL)
 		{
@@ -260,14 +260,14 @@ public:
 		}		
 	}
 	
-	ci::Vec2f percentInsideChild(float px, float py)
+	ci::vec2 percentInsideChild(float px, float py)
     {
-		return ci::Vec2f((px-x)/(width), (py-y)/(height)); 
+		return ci::vec2((px - x) / (width), (py - y) / (height));
     }
     
-    ci::Vec2f percentInsideParent(float px, float py)
+	ci::vec2 percentInsideParent(float px, float py)
     {		
-		return ci::Vec2f((px-(x+parent->getX()))/(width), (py-(y+parent->getY()))/(height)); 
+		return ci::vec2((px - (x + parent->getX())) / (width), (py - (y + parent->getY())) / (height));
 	}
     
     void draw()

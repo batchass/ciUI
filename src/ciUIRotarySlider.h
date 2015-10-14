@@ -164,8 +164,8 @@ public:
         if(draw_outline)
         {
             ci::gl::color(color_outline); 
-            ci::gl::drawStrokedCircle(Vec2f(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()), innerRadius);
-            ci::gl::drawStrokedCircle(Vec2f(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()), outerRadius);                                      
+            ci::gl::drawStrokedCircle(vec2(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()), innerRadius);
+            ci::gl::drawStrokedCircle(vec2(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()), outerRadius);                                      
         }
     }
     virtual void drawOutlineHighlight()
@@ -173,8 +173,8 @@ public:
         if(draw_outline_highlight)
         {
             ci::gl::color(color_outline_highlight); 
-            ci::gl::drawStrokedCircle(Vec2f(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()), innerRadius);
-            ci::gl::drawStrokedCircle(Vec2f(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()), outerRadius);                                      
+            ci::gl::drawStrokedCircle(vec2(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()), innerRadius);
+            ci::gl::drawStrokedCircle(vec2(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()), outerRadius);                                      
         }
 	}	
     
@@ -279,47 +279,47 @@ public:
         float theta = ci::lmap<float>(percent, 0.0f , 1.0f , 0.0f , 360.0f);
 
         ci::gl::pushMatrices();
-        ci::gl::translate(rect->getX(),rect->getY());         
+        ci::gl::translate(rect->getX(),rect->getY());     
 
-        TriMesh2d mesh;                         
+		TriMesh mesh;                         
 
         {
             float x = sin(-ci::toRadians(0.0f)); 
             float y = cos(-ci::toRadians(0.0f));         
-            mesh.appendVertex(Vec2f(center.x+outerRadius*x,center.y+outerRadius*y)); 
+            mesh.appendPosition(vec2(center.x+outerRadius*x,center.y+outerRadius*y)); 
         }
         
         for(int i = 0; i < theta; i+=8)
         {
             float x = sin(-ci::toRadians((float)i)); 
             float y = cos(-ci::toRadians((float)i));     
-            mesh.appendVertex(Vec2f(center.x+outerRadius*x,center.y+outerRadius*y)); 
+			mesh.appendPosition(vec2(center.x + outerRadius*x, center.y + outerRadius*y));
         }
         
         {
             float x = sin(-ci::toRadians(theta)); 
             float y = cos(-ci::toRadians(theta));         
-            mesh.appendVertex(Vec2f(center.x+outerRadius*x,center.y+outerRadius*y)); 
-            //            mesh.appendVertex(Vec2f(center.x+innerRadius*x,center.y+innerRadius*y)); 
+			mesh.appendPosition(vec2(center.x + outerRadius*x, center.y + outerRadius*y));
+            //            mesh.appendVertex(vec2(center.x+innerRadius*x,center.y+innerRadius*y)); 
         }
         
         {
             float x = sin(-ci::toRadians(0.0f)); 
             float y = cos(-ci::toRadians(0.0f));         
-            mesh.appendVertex(Vec2f(center.x+innerRadius*x,center.y+innerRadius*y)); 
+			mesh.appendPosition(vec2(center.x + innerRadius*x, center.y + innerRadius*y));
         }
         
         for(int i = 0; i < theta; i+=8)
         {
             float x = sin(-ci::toRadians((float)i)); 
             float y = cos(-ci::toRadians((float)i));             
-            mesh.appendVertex(Vec2f(center.x+innerRadius*x,center.y+innerRadius*y)); 
+			mesh.appendPosition(vec2(center.x + innerRadius*x, center.y + innerRadius*y));
         }
         
         {
             float x = sin(-ci::toRadians(theta)); 
             float y = cos(-ci::toRadians(theta));                  
-            mesh.appendVertex(Vec2f(center.x+innerRadius*x,center.y+innerRadius*y)); 
+			mesh.appendPosition(vec2(center.x + innerRadius*x, center.y + innerRadius*y));
         }
         
         int numVerts = (mesh.getNumVertices())/2; 
@@ -342,11 +342,11 @@ public:
     
 	void input(float x, float y)
 	{
-        hitPoint = Vec2f(x,y);         
-        Vec2f mappedHitPoint = hitPoint; 
-        mappedHitPoint -= Vec2f(rect->getX()+center.x, rect->getY()+center.y);         
+        hitPoint = vec2(x,y);         
+        vec2 mappedHitPoint = hitPoint; 
+        mappedHitPoint -= vec2(rect->getX()+center.x, rect->getY()+center.y);         
         mappedHitPoint.normalized();
-        Vec2f cVector = center-homePoint;        
+        vec2 cVector = center-homePoint;        
         cVector.normalized();
             
         value = ci::lmap<float>(atan2(cVector.x*mappedHitPoint.y-cVector.y*mappedHitPoint.x, cVector.x*mappedHitPoint.x + cVector.y*mappedHitPoint.y ), -M_PI, M_PI, 0.0f, 1.0f);
@@ -456,8 +456,8 @@ public:
         {
             paddedRect->setWidth(label->getPaddingRect()->getWidth());         
         }
-        center = Vec2f(rect->getWidth()*.5f, rect->getHeight()*.5f);   
-        homePoint = Vec2f(rect->getWidth()*.5f, rect->getHeight());   
+        center = vec2(rect->getWidth()*.5f, rect->getHeight()*.5f);   
+        homePoint = vec2(rect->getWidth()*.5f, rect->getHeight());   
 	}	
     
     bool isDraggable()
@@ -471,9 +471,9 @@ protected:    //inherited: ciUIRectangle *rect; ciUIWidget *parent;
     float *valueRef; 
     bool useReference;     
 	float max, min; 
-    Vec2f center; 
-    Vec2f hitPoint; 
-    Vec2f homePoint; 
+    vec2 center; 
+    vec2 hitPoint; 
+    vec2 homePoint; 
     float outerRadius, innerRadius; 
 
 }; 

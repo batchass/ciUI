@@ -128,7 +128,7 @@ public:
         {
             ci::gl::color(color_fill);
 //            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+padding+yOffset)));
-            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+yOffset)));               //Wonky
+			font->drawString(label, vec2(floor(rect->getX()) + xOffset, floor(rect->getY() + yOffset)));               //Wonky
         }
 	}
 	
@@ -138,14 +138,14 @@ public:
         {
             ci::gl::color(color_fill_highlight);
 //            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+padding+yOffset)));            
-            font->drawString(label, Vec2f(floor(rect->getX())+xOffset, floor(rect->getY()+yOffset)));               //Wonky
+			font->drawString(label, vec2(floor(rect->getX()) + xOffset, floor(rect->getY() + yOffset)));               //Wonky
         }           
 	}	
             
     void drawBackLabel()
     {      
         ci::gl::color(color_back);
-        font->drawString(label, Vec2f(floor(rect->getX())+CI_UI_LABEL_SHADOW_OFFSET+xOffset, floor(rect->getY()+CI_UI_LABEL_SHADOW_OFFSET+yOffset)));            
+		font->drawString(label, vec2(floor(rect->getX()) + CI_UI_LABEL_SHADOW_OFFSET + xOffset, floor(rect->getY() + CI_UI_LABEL_SHADOW_OFFSET + yOffset)));
     }
     
 	void drawString(float x, float y, std::string _string)
@@ -153,7 +153,7 @@ public:
         if(visible)
         {
             ci::gl::color(color_fill);
-            font->drawString(_string,Vec2f(floor(x), floor(y+yOffset))); 
+			font->drawString(_string, vec2(floor(x), floor(y + yOffset)));
         }
 	}
 
@@ -162,7 +162,7 @@ public:
         if(visible)
         {
             ci::gl::color(color_back);
-            font->drawString(_string,Vec2f(floor(x)+CI_UI_LABEL_SHADOW_OFFSET, floor(y+yOffset)+CI_UI_LABEL_SHADOW_OFFSET));             
+			font->drawString(_string, vec2(floor(x) + CI_UI_LABEL_SHADOW_OFFSET, floor(y + yOffset) + CI_UI_LABEL_SHADOW_OFFSET));
         }
 	}
     

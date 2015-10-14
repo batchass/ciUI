@@ -108,7 +108,7 @@ public:
         if(draw_back)
         {
             cinder::gl::color(color_back); 
-            cinder::gl::drawSolidCircle(Vec2f(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()),rect->getHalfWidth());
+			cinder::gl::drawSolidCircle(vec2(rect->getX() + rect->getHalfWidth(), rect->getY() + rect->getHalfHeight()), rect->getHalfWidth());
         }
     }
     
@@ -117,7 +117,7 @@ public:
         if(draw_outline)
         {
             cinder::gl::color(color_outline); 
-            cinder::gl::drawStrokedCircle(Vec2f(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()),rect->getHalfWidth());
+			cinder::gl::drawStrokedCircle(vec2(rect->getX() + rect->getHalfWidth(), rect->getY() + rect->getHalfHeight()), rect->getHalfWidth());
         } 
     }
     
@@ -126,7 +126,7 @@ public:
         if(draw_fill)
         {			
             cinder::gl::color(color_fill); 
-            cinder::gl::drawSolidCircle(Vec2f(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()),value*rect->getHalfWidth());
+			cinder::gl::drawSolidCircle(vec2(rect->getX() + rect->getHalfWidth(), rect->getY() + rect->getHalfHeight()), value*rect->getHalfWidth());
         }
     }
     
@@ -135,7 +135,7 @@ public:
         if(draw_fill_highlight)
         {
             cinder::gl::color(color_fill_highlight);         
-            cinder::gl::drawSolidCircle(Vec2f(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()),value*rect->getHalfWidth());
+			cinder::gl::drawSolidCircle(vec2(rect->getX() + rect->getHalfWidth(), rect->getY() + rect->getHalfHeight()), value*rect->getHalfWidth());
             cinder::gl::color(label->getColorFillHighlight());                         
             label->drawString(rect->getX()+rect->getWidth()+padding, rect->getHalfHeight()+rect->getY()-label->getRect()->getHalfHeight(), numToString(getScaledValue(), labelPrecision));
             
@@ -147,7 +147,7 @@ public:
         if(draw_outline_highlight)
         {
             cinder::gl::color(color_outline_highlight); 
-            cinder::gl::drawStrokedCircle(Vec2f(rect->getX()+rect->getHalfWidth(), rect->getY()+rect->getHalfHeight()),rect->getHalfWidth());
+			cinder::gl::drawStrokedCircle(vec2(rect->getX() + rect->getHalfWidth(), rect->getY() + rect->getHalfHeight()), rect->getHalfWidth());
             if(!draw_fill_highlight)
             {
                 cinder::gl::color(label->getColorFill()); 
@@ -180,7 +180,7 @@ public:
                     break;
             }
             updateValueRef();
-            hitPoint = Vec2f((float) x, (float) y);    
+			hitPoint = vec2((float)x, (float)y);
 			triggerEvent(this);             
             state = CI_UI_STATE_DOWN;         
         }    
@@ -196,7 +196,7 @@ public:
         if(rect->inside((float) x, (float) y))
         {
             hit = true; 
-            hitPoint = Vec2f((float) x, (float) y); 
+			hitPoint = vec2((float)x, (float)y);
             state = CI_UI_STATE_DOWN;     
 			triggerEvent(this);            
         }    
@@ -273,7 +273,7 @@ public:
     
 protected:
     ciUIWidgetInputDirection inputDirection; 
-    Vec2f hitPoint;     
+	vec2 hitPoint;
 }; 
 
 #endif

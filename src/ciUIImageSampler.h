@@ -71,8 +71,8 @@ public:
             float y = rect->getY()+value.y*rect->getHeight();             
             
             ci::gl::color(color_fill); 		            
-            ci::gl::drawLine(Vec2f(rect->getX()+value.x*rect->getWidth(),  rect->getY()), Vec2f(rect->getX()+value.x*rect->getWidth(),  rect->getY()+rect->getHeight()));
-            ci::gl::drawLine(Vec2f(rect->getX(), rect->getY()+value.y*rect->getHeight()), Vec2f(rect->getX()+rect->getWidth(), rect->getY()+value.y*rect->getHeight())); 			
+            ci::gl::drawLine(vec2(rect->getX()+value.x*rect->getWidth(),  rect->getY()), vec2(rect->getX()+value.x*rect->getWidth(),  rect->getY()+rect->getHeight()));
+            ci::gl::drawLine(vec2(rect->getX(), rect->getY()+value.y*rect->getHeight()), vec2(rect->getX()+rect->getWidth(), rect->getY()+value.y*rect->getHeight())); 			
 
             ci::gl::color(sampledColor); 		            
             ci::gl::drawSolidRect(Rectf(x-squareSizeHalf,y-squareSizeHalf,x+squareSizeHalf,y+squareSizeHalf));                    
@@ -88,8 +88,8 @@ public:
             float y = rect->getY()+value.y*rect->getHeight();             
             
             ci::gl::color(color_fill_highlight); 		            
-            ci::gl::drawLine(Vec2f(rect->getX()+value.x*rect->getWidth(),  rect->getY()), Vec2f(rect->getX()+value.x*rect->getWidth(),  rect->getY()+rect->getHeight()));
-            ci::gl::drawLine(Vec2f(rect->getX(), rect->getY()+value.y*rect->getHeight()), Vec2f(rect->getX()+rect->getWidth(), rect->getY()+value.y*rect->getHeight())); 			
+            ci::gl::drawLine(vec2(rect->getX()+value.x*rect->getWidth(),  rect->getY()), vec2(rect->getX()+value.x*rect->getWidth(),  rect->getY()+rect->getHeight()));
+            ci::gl::drawLine(vec2(rect->getX(), rect->getY()+value.y*rect->getHeight()), vec2(rect->getX()+rect->getWidth(), rect->getY()+value.y*rect->getHeight())); 			
             
             ci::gl::color(sampledColor); 		            
             ci::gl::drawSolidRect(Rectf(x-squareSize,y-squareSize,x+squareSize,y+squareSize));            
@@ -269,7 +269,7 @@ public:
         }    
         if(imageSurface != NULL)
         {
-            sampledColor = imageSurface->getPixel(Vec2i(value.x*(imageSurface->getWidth()-1), value.y*(imageSurface->getHeight()-1)));          
+            sampledColor = imageSurface->getPixel(ivec2(value.x*(imageSurface->getWidth()-1), value.y*(imageSurface->getHeight()-1)));          
         }
     }
     
@@ -283,12 +283,12 @@ public:
         sampledColor = _sampledColor; 
     }
     
-    Vec2f getValue()
+    vec2 getValue()
     {
         return value;
     }
     
-    void setValue(Vec2f _value)
+    void setValue(vec2 _value)
     {
         value = _value; 
         if(value.x > 1.0)
@@ -310,7 +310,7 @@ public:
         }    
         if(imageSurface != NULL)
         {
-            sampledColor = imageSurface->getPixel(Vec2i(value.x*(imageSurface->getWidth()-1), value.y*(imageSurface->getHeight()-1)));          
+			sampledColor = imageSurface->getPixel(ivec2(value.x*(imageSurface->getWidth() - 1), value.y*(imageSurface->getHeight() - 1)));
         }
     }
     
@@ -321,7 +321,7 @@ public:
 
 protected: 
     ColorA sampledColor; 
-	Vec2f value;     
+	vec2 value;     
     float increment;    
     float squareSize, squareSizeHalf;    
 }; 

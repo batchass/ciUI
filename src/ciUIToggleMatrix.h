@@ -58,7 +58,7 @@ public:
 		label->setRectParent(rect); 
         label->setEmbedded(true);
         
-        Vec2f pos = Vec2f(0,0); 
+        vec2 pos = vec2(0,0); 
 		for(int i = 0; i < rows; i++)
         {
             for(int j = 0; j < cols; j++)

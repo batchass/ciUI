@@ -30,7 +30,6 @@
 #if defined( CINDER_COCOA_TOUCH )
 #include "cinder/app/AppCocoaTouch.h"
 #endif
-#include "cinder/app/AppBasic.h"
 
 #include "cinder/Xml.h"
 #include "cinder/Utilities.h"
@@ -340,7 +339,7 @@ public:
                 ciUI2DPad *pad = (ciUI2DPad *) widget; 
                 float valueX = XML.getChild("XValue").getValue<float>();
                 float valueY = XML.getChild("YValue").getValue<float>();
-                pad->setValue(Vec2f(valueX, valueY)); 
+                pad->setValue(vec2(valueX, valueY)); 
             }
                 break;
                 
@@ -371,7 +370,7 @@ public:
                 float b = XML.getChild("BColor").getValue<float>();
                 float a = XML.getChild("AColor").getValue<float>();
                 
-                imageSampler->setValue(Vec2f(valueX, valueY));
+                imageSampler->setValue(vec2(valueX, valueY));
                 imageSampler->setColor(ColorA(r,g,b,a));
             }
                 break;
@@ -576,7 +575,7 @@ public:
         if(enabled)
         {                   
             glDisable(GL_DEPTH_TEST);       
-            glDisable(GL_LIGHTING);
+            //glDisable(GL_LIGHTING);
             gl::enableAlphaBlending(); 
             
             glLineWidth(1.5f);

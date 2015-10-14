@@ -30,56 +30,56 @@
 class ciUI2DPad : public ciUIWidgetWithLabel
 {
 public:
-    ciUI2DPad(float x, float y, float w, float h, Vec2f _value, string _name)
+    ciUI2DPad(float x, float y, float w, float h, vec2 _value, string _name)
     {
         useReference = false;                 
         rect = new ciUIRectangle(x,y,w,h); 
-        init(w, h, Vec2f(0,w), Vec2f(0,h), &_value, _name);
+        init(w, h, vec2(0,w), vec2(0,h), &_value, _name);
     }	
 
-    ciUI2DPad(float x, float y, float w, float h, Vec2f _rangeX, Vec2f _rangeY, Vec2f _value, string _name)
+    ciUI2DPad(float x, float y, float w, float h, vec2 _rangeX, vec2 _rangeY, vec2 _value, string _name)
     {
         useReference = false;                 
         rect = new ciUIRectangle(x,y,w,h); 
         init(w, h, _rangeX, _rangeY, &_value, _name);
     }	
     
-    ciUI2DPad(float w, float h, Vec2f _value, string _name)
+    ciUI2DPad(float w, float h, vec2 _value, string _name)
     {
         useReference = false;                 
         rect = new ciUIRectangle(0,0,w,h); 
-        init(w, h, Vec2f(0,w), Vec2f(0,h), &_value, _name);
+        init(w, h, vec2(0,w), vec2(0,h), &_value, _name);
     }
 	
-    ciUI2DPad(float w, float h, Vec2f _rangeX, Vec2f _rangeY, Vec2f _value, string _name)
+    ciUI2DPad(float w, float h, vec2 _rangeX, vec2 _rangeY, vec2 _value, string _name)
     {
         useReference = false;         
         rect = new ciUIRectangle(0,0,w,h); 
         init(w, h, _rangeX, _rangeY, &_value, _name);
     }    
 
-    ciUI2DPad(float x, float y, float w, float h, Vec2f *_value, string _name)
+    ciUI2DPad(float x, float y, float w, float h, vec2 *_value, string _name)
     {
         useReference = true; 
         rect = new ciUIRectangle(x,y,w,h); 
-        init(w, h, Vec2f(0,w), Vec2f(0,h), _value, _name);
+        init(w, h, vec2(0,w), vec2(0,h), _value, _name);
     }	
     
-    ciUI2DPad(float x, float y, float w, float h, Vec2f _rangeX, Vec2f _rangeY, Vec2f *_value, string _name)
+    ciUI2DPad(float x, float y, float w, float h, vec2 _rangeX, vec2 _rangeY, vec2 *_value, string _name)
     {
         useReference = true; 
         rect = new ciUIRectangle(x,y,w,h); 
         init(w, h, _rangeX, _rangeY, _value, _name);
     }	
     
-    ciUI2DPad(float w, float h, Vec2f *_value, string _name)
+    ciUI2DPad(float w, float h, vec2 *_value, string _name)
     {
         useReference = true;         
         rect = new ciUIRectangle(0,0,w,h); 
-        init(w, h, Vec2f(0,w), Vec2f(0,h), _value, _name);
+        init(w, h, vec2(0,w), vec2(0,h), _value, _name);
     }
 	
-    ciUI2DPad(float w, float h, Vec2f _rangeX, Vec2f _rangeY, Vec2f *_value, string _name)
+    ciUI2DPad(float w, float h, vec2 _rangeX, vec2 _rangeY, vec2 *_value, string _name)
     {
         useReference = true;         
         rect = new ciUIRectangle(0,0,w,h); 
@@ -94,7 +94,7 @@ public:
         }        
     }
     
-    void init(float w, float h, Vec2f _rangeX, Vec2f _rangeY, Vec2f *_value, string _name)
+    void init(float w, float h, vec2 _rangeX, vec2 _rangeY, vec2 *_value, string _name)
     {
 		name = _name; 				
 		kind = CI_UI_WIDGET_2DPAD; 		
@@ -108,7 +108,7 @@ public:
         }
         else
         {
-            valueRef = new Vec2f(); 
+            valueRef = new vec2(); 
             *valueRef = value; 
         }
 
@@ -174,8 +174,8 @@ public:
             float x = rect->getX()+value.x*rect->getWidth();
             float y = rect->getY()+value.y*rect->getHeight();             
             ci::gl::drawSolidRect(Rectf(x-CI_UI_GLOBAL_PADDING,y-CI_UI_GLOBAL_PADDING,x+CI_UI_GLOBAL_PADDING,y+CI_UI_GLOBAL_PADDING));
-            ci::gl::drawLine(Vec2f(rect->getX()+value.x*rect->getWidth(),  rect->getY()), Vec2f(rect->getX()+value.x*rect->getWidth(),  rect->getY()+rect->getHeight()));
-            ci::gl::drawLine(Vec2f(rect->getX(), rect->getY()+value.y*rect->getHeight()), Vec2f(rect->getX()+rect->getWidth(), rect->getY()+value.y*rect->getHeight())); 			
+            ci::gl::drawLine(vec2(rect->getX()+value.x*rect->getWidth(),  rect->getY()), vec2(rect->getX()+value.x*rect->getWidth(),  rect->getY()+rect->getHeight()));
+            ci::gl::drawLine(vec2(rect->getX(), rect->getY()+value.y*rect->getHeight()), vec2(rect->getX()+rect->getWidth(), rect->getY()+value.y*rect->getHeight())); 			
         }
     }
     
@@ -188,8 +188,8 @@ public:
             float x = rect->getX()+value.x*rect->getWidth();
             float y = rect->getY()+value.y*rect->getHeight();                         
             ci::gl::drawSolidRect(Rectf(x-CI_UI_GLOBAL_PADDING,y-CI_UI_GLOBAL_PADDING,x+CI_UI_GLOBAL_PADDING,y+CI_UI_GLOBAL_PADDING));
-            ci::gl::drawLine(Vec2f(rect->getX()+value.x*rect->getWidth(),  rect->getY()), Vec2f(rect->getX()+value.x*rect->getWidth(),  rect->getY()+rect->getHeight()));
-            ci::gl::drawLine(Vec2f(rect->getX(), rect->getY()+value.y*rect->getHeight()), Vec2f(rect->getX()+rect->getWidth(), rect->getY()+value.y*rect->getHeight())); 			                        
+            ci::gl::drawLine(vec2(rect->getX()+value.x*rect->getWidth(),  rect->getY()), vec2(rect->getX()+value.x*rect->getWidth(),  rect->getY()+rect->getHeight()));
+            ci::gl::drawLine(vec2(rect->getX(), rect->getY()+value.y*rect->getHeight()), vec2(rect->getX()+rect->getWidth(), rect->getY()+value.y*rect->getHeight())); 			                        
             
 			label->drawString(rect->getX()+value.x*rect->getWidth()+CI_UI_GLOBAL_WIDGET_SPACING, rect->getY()+value.y*rect->getHeight()+CI_UI_GLOBAL_WIDGET_SPACING, "(" + numToString(getScaledValue().x, labelPrecision) + ", " + numToString(getScaledValue().y, labelPrecision)+")"); 
         }        
@@ -277,7 +277,7 @@ public:
 			{
 				case ci::app::KeyEvent::KEY_RIGHT:
                 {
-                    Vec2f p = getScaledValue();         
+                    vec2 p = getScaledValue();         
                     p.x+=increment; 
                     value.x = ci::lmap<float>(p.x, rangeX.x, rangeX.y, 0.0, 1.0);                    
                     updateValueRef();                                        
@@ -288,7 +288,7 @@ public:
 					
 				case ci::app::KeyEvent::KEY_DOWN:
                 {
-                    Vec2f p = getScaledValue();         
+                    vec2 p = getScaledValue();         
                     p.y +=increment; 
                     value.y = ci::lmap<float>(p.y, rangeY.x, rangeY.y, 0.0, 1.0);                    
                     updateValueRef();          							        
@@ -299,7 +299,7 @@ public:
 					
 				case ci::app::KeyEvent::KEY_LEFT:
                 {
-                    Vec2f p = getScaledValue();         
+                    vec2 p = getScaledValue();         
                     p.x-=increment; 
                     value.x = ci::lmap<float>(p.x, rangeX.x, rangeX.y, 0.0, 1.0);                    
                     updateValueRef();          							        
@@ -310,7 +310,7 @@ public:
 					
 				case ci::app::KeyEvent::KEY_UP:
                 {
-                    Vec2f p = getScaledValue();         
+                    vec2 p = getScaledValue();         
                     p.y -=increment; 
                     value.y = ci::lmap<float>(p.y, rangeY.x, rangeY.y, 0.0, 1.0);                    
                     updateValueRef();          							        
@@ -415,7 +415,7 @@ public:
         label->setVisible(visible); 
     }
     
-	void setValue(Vec2f _value)
+	void setValue(vec2 _value)
 	{
 		if(_value.x > rangeX.y)
 		{
@@ -441,19 +441,19 @@ public:
 		updateLabel(); 		
 	}
 	
-	Vec2f getValue()
+	vec2 getValue()
 	{
 		return value; 
 	}
 	
-	Vec2f getPercentValue()
+	vec2 getPercentValue()
 	{
 		return value; 
 	}
 	
-	Vec2f getScaledValue()
+	vec2 getScaledValue()
 	{
-		Vec2f p = value; 
+		vec2 p = value; 
 		p.x = ci::lmap<float>(p.x, 0, 1, rangeX.x, rangeX.y); 
 		p.y = ci::lmap<float>(p.y, 0, 1, rangeY.x, rangeY.y); 
 		return p; 
@@ -477,12 +477,12 @@ public:
 
     
 protected:    //inherited: ciUIRectangle *rect; ciUIWidget *parent; 
-	Vec2f value; 
-	Vec2f *valueRef;     
+	vec2 value; 
+	vec2 *valueRef;     
     float increment;
     int labelPrecision; 
     bool useReference; 
-    Vec2f rangeX, rangeY; 
+    vec2 rangeX, rangeY; 
 }; 
 
 #endif

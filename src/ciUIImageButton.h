@@ -82,7 +82,7 @@ public:
         
         setValue(*_value); 
 
-        image = ci::loadImage( _pathURL );
+		image = gl::Texture::create(ci::loadImage(_pathURL));
     }
 	
     virtual void setDrawPadding(bool _draw_padded_rect)
@@ -189,7 +189,7 @@ public:
 
     
 protected:    //inherited: ciUIRectangle *rect; ciUIWidget *parent; 
-    gl::Texture image; 
+    gl::TextureRef image; 
 }; 
 
 #endif

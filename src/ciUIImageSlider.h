@@ -132,21 +132,21 @@ public:
         }
         
         
-        track = loadImage(loadAsset(coreURL+"track"+extension));                 //back
-        progress = loadImage(loadAsset(coreURL+"progress"+extension));           //fill
-        handle = loadImage(loadAsset(coreURL+"handle"+extension));               //handle        
-        handleDown = loadImage(loadAsset(coreURL+"handledown"+extension));       //handleOver State                        
+		track = gl::Texture::create(loadImage(loadAsset(coreURL + "track" + extension)));                 //back
+		progress = gl::Texture::create(loadImage(loadAsset(coreURL + "progress" + extension)));           //fill
+		handle = gl::Texture::create(loadImage(loadAsset(coreURL + "handle" + extension)));               //handle        
+		handleDown = gl::Texture::create(loadImage(loadAsset(coreURL + "handledown" + extension)));       //handleOver State                        
         
-        handleHalfWidth = handle.getWidth()*.5f;
-        handleHalfHeight = handle.getHeight()*.5f;
+        handleHalfWidth = handle->getWidth()*.5f;
+        handleHalfHeight = handle->getHeight()*.5f;
         
         if(kind == CI_UI_WIDGET_IMAGESLIDER_H)
         {
-            imageRect = new ciUIRectangle(handleHalfWidth,0,rect->getWidth()-handle.getWidth(), rect->getHeight());
+			imageRect = new ciUIRectangle(handleHalfWidth, 0, rect->getWidth() - handle->getWidth(), rect->getHeight());
         }
         else
         {
-            imageRect = new ciUIRectangle(0,handleHalfHeight,rect->getWidth(), rect->getHeight()-handle.getHeight());            
+			imageRect = new ciUIRectangle(0, handleHalfHeight, rect->getWidth(), rect->getHeight() - handle->getHeight());
         }
         imageRect->setParent(rect);     
     }
@@ -188,14 +188,14 @@ public:
 			if(kind == CI_UI_WIDGET_IMAGESLIDER_H)
 			{	
                 gl::draw(progress, Area(0,0,rect->getWidth()*value,rect->getHeight()), Rectf(rect->getX(), rect->getY(), rect->getX()+rect->getWidth()*value, rect->getY()+rect->getHeight()));
-                gl::draw(handle, Vec2f(imageRect->getX()+imageRect->getWidth()*value-handleHalfWidth, imageRect->getY())); 
+                gl::draw(handle, vec2(imageRect->getX()+imageRect->getWidth()*value-handleHalfWidth, imageRect->getY())); 
 			}
 			else 
 			{
                 gl::draw(progress, 
                          Area(0,rect->getHeight()*(1.0-value),rect->getWidth(),rect->getHeight()), 
                          Rectf(rect->getX(), rect->getY()+rect->getHeight()*(1.0-value), rect->getX()+rect->getWidth(), rect->getY()+rect->getHeight()));                            
-                gl::draw(handle, Vec2f(imageRect->getX(), imageRect->getY()+imageRect->getHeight()*(1.0-value)-handleHalfWidth));            
+                gl::draw(handle, vec2(imageRect->getX(), imageRect->getY()+imageRect->getHeight()*(1.0-value)-handleHalfWidth));            
 			}
         }
     }
@@ -208,14 +208,14 @@ public:
             if(kind == CI_UI_WIDGET_IMAGESLIDER_H)
             {	
                 gl::draw(progress, Area(0,0,rect->getWidth()*value,rect->getHeight()), Rectf(rect->getX(), rect->getY(), rect->getX()+rect->getWidth()*value, rect->getY()+rect->getHeight()));            
-                gl::draw(handleDown, Vec2f(imageRect->getX()+imageRect->getWidth()*value-handleHalfWidth, imageRect->getY())); 
+                gl::draw(handleDown, vec2(imageRect->getX()+imageRect->getWidth()*value-handleHalfWidth, imageRect->getY())); 
             }
             else
             {
                 gl::draw(progress, 
                          Area(0,rect->getHeight()*(1.0f-value),rect->getWidth(),rect->getHeight()), 
                          Rectf(rect->getX(), rect->getY()+rect->getHeight()*(1.0f-value), rect->getX()+rect->getWidth(), rect->getY()+rect->getHeight()));                            
-                gl::draw(handleDown, Vec2f(imageRect->getX(), imageRect->getY()+imageRect->getHeight()*(1.0f-value)-handleHalfWidth));            
+                gl::draw(handleDown, vec2(imageRect->getX(), imageRect->getY()+imageRect->getHeight()*(1.0f-value)-handleHalfWidth));            
                 label->drawString(imageRect->getX()+imageRect->getWidth()+padding, imageRect->getY()+imageRect->getHeight()*(1.0f-value)-label->getRect()->getHalfHeight()*.5f, numToString(getScaledValue(),labelPrecision)); 
 			}
         }
@@ -297,10 +297,10 @@ public:
     
     
 protected:    //inherited: ciUIRectangle *rect; ciUIWidget *parent; 
-    gl::Texture track;         //back
-    gl::Texture progress;      //fill
-    gl::Texture handle;        //handle
-    gl::Texture handleDown;    //handleOver State    
+    gl::TextureRef track;         //back
+    gl::TextureRef progress;      //fill
+    gl::TextureRef handle;        //handle
+    gl::TextureRef handleDown;    //handleOver State    
     int handleHalfWidth; 
     int handleHalfHeight; 
     ciUIRectangle *imageRect;
