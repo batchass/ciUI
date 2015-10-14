@@ -90,12 +90,12 @@ public:
     {
         name = "CI_UI_WIDGET_CANVAS"; 
 		kind = CI_UI_WIDGET_CANVAS; 
-
-#if defined( CINDER_COCOA_TOUCH )
-        mApp = (app::AppCocoaTouch *) app::App::get();                 
-#else
-		mApp = app::App::get();
-#endif 
+//
+//#if defined( CINDER_COCOA_TOUCH )
+//        mApp = (app::AppCocoaTouch *) app::App::get();                 
+//#else
+//		mApp = app::App::get();
+//#endif 
 
 		enabled = false; 		
 		enable(); 
@@ -530,33 +530,33 @@ public:
 	//Mouse Callbacks
     void enableMouseEventCallbacks()
     {
-		mCbMouseDown = mApp->getWindow()->getSignalMouseDown().connect( std::bind( &ciUICanvas::canvasMouseDown, this, std::placeholders::_1 ) );
+		/*mCbMouseDown = mApp->getWindow()->getSignalMouseDown().connect( std::bind( &ciUICanvas::canvasMouseDown, this, std::placeholders::_1 ) );
 		mCbMouseUp = mApp->getWindow()->getSignalMouseUp().connect( std::bind( &ciUICanvas::canvasMouseUp, this, std::placeholders::_1 ) );
 		mCbMouseMove = mApp->getWindow()->getSignalMouseMove().connect( std::bind( &ciUICanvas::canvasMouseMove, this, std::placeholders::_1 ) );
-		mCbMouseDrag = mApp->getWindow()->getSignalMouseDrag().connect( std::bind( &ciUICanvas::canvasMouseDrag, this, std::placeholders::_1 ) );
+		mCbMouseDrag = mApp->getWindow()->getSignalMouseDrag().connect( std::bind( &ciUICanvas::canvasMouseDrag, this, std::placeholders::_1 ) );*/
     }
 
 	//Mouse Callbacks
     void disableMouseEventCallbacks()
     {
-		mCbMouseDown.disconnect();
+		/*mCbMouseDown.disconnect();
 		mCbMouseUp.disconnect();
 		mCbMouseMove.disconnect();
-		mCbMouseDrag.disconnect();
+		mCbMouseDrag.disconnect();*/
     }	
 
     //KeyBoard Callbacks
 	void enableKeyEventCallbacks()
 	{
-		mCbKeyDown = mApp->getWindow()->getSignalKeyDown().connect( std::bind( &ciUICanvas::canvasKeyDown, this, std::placeholders::_1 ) );
-		mCbKeyUp = mApp->getWindow()->getSignalKeyUp().connect( std::bind( &ciUICanvas::canvasKeyUp, this, std::placeholders::_1 ) );
+		/*mCbKeyDown = mApp->getWindow()->getSignalKeyDown().connect( std::bind( &ciUICanvas::canvasKeyDown, this, std::placeholders::_1 ) );
+		mCbKeyUp = mApp->getWindow()->getSignalKeyUp().connect( std::bind( &ciUICanvas::canvasKeyUp, this, std::placeholders::_1 ) );*/
 	}
 
 	//KeyBoard Callbacks
 	void disableKeyEventCallbacks()
 	{
-		mCbKeyDown.disconnect();
-		mCbKeyUp.disconnect();       
+		/*mCbKeyDown.disconnect();
+		mCbKeyUp.disconnect();  */     
 	}
     
 #endif	    
@@ -1369,7 +1369,7 @@ public:
 	{        
         checkForKeyFocus(child); 
 		GUIevent->widget = child; 		
-        uiEventCallbackMgr.call( GUIevent ); 
+        //uiEventCallbackMgr.call( GUIevent ); 
 	}
     
     void setUIColors(ColorA &cb, ColorA &co, ColorA &coh, ColorA &cf, ColorA &cfh, ColorA &cp, ColorA &cpo)
@@ -2114,7 +2114,7 @@ public:
         return widgetToReturn;                                         
     }
 
-    template<typename T> ci::CallbackId registerUIEvents( T *obj, void (T::*callback)( ciUIEvent *event ) )
+    /*template<typename T> ci::CallbackId registerUIEvents( T *obj, void (T::*callback)( ciUIEvent *event ) )
     {
         return uiEventCallbackMgr.registerCb( std::bind1st( std::mem_fun( callback ), obj ) );
     }
@@ -2122,7 +2122,7 @@ public:
     void unregisterUIEvents( ci::CallbackId id ) 
     {
         uiEventCallbackMgr.unregisterCb( id ); 
-    }
+    }*/
 
 	
 protected:    
@@ -2134,7 +2134,7 @@ protected:
         widgets.push_back(widget);    
 		widgets_map[widget->getName()] = widget;                             
     }
-    
+	/*
     ci::CallbackMgr<void(ciUIEvent*)> uiEventCallbackMgr;
     
     
@@ -2148,7 +2148,7 @@ protected:
     ci::signals::scoped_connection mCbMouseDown, mCbMouseDrag, mCbMouseUp, mCbMouseMove;
     ci::signals::scoped_connection mCbKeyDown, mCbKeyUp;
 #endif 
-    
+   */ 
     gl::TextureFontRef font_large; 	
     gl::TextureFontRef font_medium; 		
     gl::TextureFontRef font_small;

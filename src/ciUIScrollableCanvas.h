@@ -60,9 +60,9 @@ public:
         kind = CI_UI_WIDGET_SCROLLABLECANVAS;
         sRect = new ciUIRectangle(rect->getRawX(), rect->getRawY(), rect->getWidth(), rect->getHeight());
         isScrolling = false; 
-        vel = Vec2f(0.0f,0.0f); 
-        pos = ppos = Vec2f(0.0f,0.0f); 
-        acc = Vec2f(0.0f,0.0f); 
+		vel = vec2(0.0f, 0.0f);
+		pos = ppos = vec2(0.0f, 0.0f);
+		acc = vec2(0.0f, 0.0f);
         damping = .90f; 
         scrollX = false; 
         scrollY = true; 
@@ -199,14 +199,14 @@ public:
                 }
             }
             
-            acc.limit(10);
+            //acc.limit(10);
             vel +=acc; 
-            vel.limit(50);
+            //vel.limit(50);
             if(scrollX) rect->setX(rect->getRawX() + vel.x);
             if(scrollY) rect->setY(rect->getRawY() + vel.y);             
             
             vel *=damping;    
-            acc = Vec2f(0,0); 
+			acc = vec2(0, 0);
         }
         
 		for(unsigned int i = 0; i < widgets.size(); i++)
@@ -277,12 +277,12 @@ public:
                 if(isScrolling != true)
                 {
                     isScrolling = true; 
-                    ppos = Vec2f((float) event.getX(), (float) event.getY());
-                    vel = Vec2f(0,0); 
+					ppos = vec2((float)event.getX(), (float)event.getY());
+					vel = vec2(0, 0);
                 }
                 else
                 {
-                    pos = Vec2f((float) event.getX(), (float) event.getY());             
+					pos = vec2((float)event.getX(), (float)event.getY());
                     vel = pos-ppos; 
                     if(scrollX) rect->setX(rect->getRawX() + vel.x);
                     if(scrollY) rect->setY(rect->getRawY() + vel.y);             
@@ -315,7 +315,7 @@ public:
         }		
         
         isScrolling = false; 
-        vel = Vec2f(0,0);             
+		vel = vec2(0, 0);
         return false;              
     }
     
@@ -331,7 +331,7 @@ public:
         if(isScrolling)
         {
             isScrolling = false; 
-            pos = Vec2f((float) event.getX(), (float) event.getY());
+			pos = vec2((float)event.getX(), (float)event.getY());
         }
         return false;         
     }	
@@ -344,10 +344,10 @@ protected:
     bool scrollX, scrollY; 
     bool nearTop, nearBot, nearRight, nearLeft;
     bool hitWidget; 
-    Vec2f pos; 
-    Vec2f ppos; 
-    Vec2f vel; 
-    Vec2f acc; 
+    vec2 pos; 
+    vec2 ppos; 
+    vec2 vel; 
+    vec2 acc; 
     float damping;
     float stickyDistance;     
 };

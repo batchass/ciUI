@@ -32,26 +32,26 @@
 class ciUIImage : public ciUIWidgetWithLabel
 {
 public:
-    ciUIImage(float x, float y, float w, float h, gl::Texture *_image, string _name)
+    ciUIImage(float x, float y, float w, float h, gl::TextureRef _image, string _name)
     {
         rect = new ciUIRectangle(x,y,w,h); 
         init(w, h, _image, _name); 
     }
     
-    ciUIImage(float x, float y, float w, float h, gl::Texture *_image, string _name, bool _showLabel)
+    ciUIImage(float x, float y, float w, float h, gl::TextureRef _image, string _name, bool _showLabel)
     {
         rect = new ciUIRectangle(x,y,w,h); 
         init(w, h, _image, _name); 
         showLabel = _showLabel; 
     }
     
-    ciUIImage(float w, float h, gl::Texture *_image, string _name)
+	ciUIImage(float w, float h, gl::TextureRef _image, string _name)
     {
         rect = new ciUIRectangle(0,0,w,h); 
         init(w, h, _image, _name); 
     }    
 
-    ciUIImage(float w, float h, gl::Texture *_image, string _name, bool _showLabel)
+	ciUIImage(float w, float h, gl::TextureRef _image, string _name, bool _showLabel)
     {
         rect = new ciUIRectangle(0,0,w,h); 
         init(w, h, _image, _name); 
@@ -60,33 +60,33 @@ public:
     
 //
     
-    ciUIImage(float x, float y, float w, float h, Surface *_image, string _name)
+	ciUIImage(float x, float y, float w, float h, SurfaceRef _image, string _name)
     {
         rect = new ciUIRectangle(x,y,w,h); 
         init(w, h, _image, _name); 
     }
     
-    ciUIImage(float x, float y, float w, float h, Surface *_image, string _name, bool _showLabel)
+	ciUIImage(float x, float y, float w, float h, SurfaceRef _image, string _name, bool _showLabel)
     {
         rect = new ciUIRectangle(x,y,w,h); 
         init(w, h, _image, _name); 
         showLabel = _showLabel; 
     }
     
-    ciUIImage(float w, float h, Surface *_image, string _name)
+	ciUIImage(float w, float h, SurfaceRef _image, string _name)
     {
         rect = new ciUIRectangle(0,0,w,h); 
         init(w, h, _image, _name); 
     }    
     
-    ciUIImage(float w, float h, Surface *_image, string _name, bool _showLabel)
+	ciUIImage(float w, float h, SurfaceRef _image, string _name, bool _showLabel)
     {
         rect = new ciUIRectangle(0,0,w,h); 
         init(w, h, _image, _name); 
         showLabel = _showLabel; 
     }        
     
-    void init(float w, float h, gl::Texture *_image, string _name)
+    void init(float w, float h, gl::TextureRef _image, string _name)
     {
 		name = _name; 				
 		kind = CI_UI_WIDGET_IMAGE; 
@@ -107,7 +107,7 @@ public:
         label->setEmbedded(true);        
     }
 
-    void init(float w, float h, Surface *_image, string _name)
+    void init(float w, float h, SurfaceRef _image, string _name)
     {
 		name = _name; 				
 		kind = CI_UI_WIDGET_IMAGE; 
@@ -145,22 +145,22 @@ public:
     {
         if(draw_fill)
         {			
-            if(useSurface)
+            /* if(useSurface)
             {
                 if(image != NULL)
                 {			   
                     ci::gl::color(1.0f,1.0f,1.0f,1.0f);
-                    gl::draw(*imageSurface, Rectf(rect->getX(), rect->getY(), rect->getX()+rect->getWidth(), rect->getY()+rect->getHeight()));
+                    gl::draw(imageSurface, Rectf(rect->getX(), rect->getY(), rect->getX()+rect->getWidth(), rect->getY()+rect->getHeight()));
                 }                
             }
             else
-            {
+            {*/
                 if(image != NULL)
                 {			   
                     ci::gl::color(1.0f,1.0f,1.0f,1.0f);
-                    gl::draw(*image, Rectf(rect->getX(), rect->getY(), rect->getX()+rect->getWidth(), rect->getY()+rect->getHeight()));
+                    gl::draw(image, Rectf(rect->getX(), rect->getY(), rect->getX()+rect->getWidth(), rect->getY()+rect->getHeight()));
                 }                
-            }
+            //}
         }
     }        
 
@@ -175,13 +175,13 @@ public:
 		return label; 
 	}
     
-    void setImage(gl::Texture *_image)
+	void setImage(gl::TextureRef _image)
     {
         image = _image; 
         useSurface = false; 
     }
     
-    void setImage(Surface *_image)
+	void setImage(SurfaceRef _image)
     {        
         imageSurface = _image; 
         useSurface = true; 
@@ -208,8 +208,8 @@ public:
     
     
 protected:    //inherited: ciUIRectangle *rect; ciUIWidget *parent; 
-    gl::Texture *image;   
-    Surface *imageSurface;
+    gl::TextureRef image;   
+    SurfaceRef imageSurface;
     bool showLabel; 
     bool useSurface; 
 }; 

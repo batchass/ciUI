@@ -345,10 +345,10 @@ public:
         hitPoint = vec2(x,y);         
         vec2 mappedHitPoint = hitPoint; 
         mappedHitPoint -= vec2(rect->getX()+center.x, rect->getY()+center.y);         
-        mappedHitPoint.normalized();
+        mappedHitPoint = normalize(mappedHitPoint);
         vec2 cVector = center-homePoint;        
-        cVector.normalized();
-            
+        cVector = normalize(cVector);
+		
         value = ci::lmap<float>(atan2(cVector.x*mappedHitPoint.y-cVector.y*mappedHitPoint.x, cVector.x*mappedHitPoint.x + cVector.y*mappedHitPoint.y ), -M_PI, M_PI, 0.0f, 1.0f);
         
         if(value > 1.0)

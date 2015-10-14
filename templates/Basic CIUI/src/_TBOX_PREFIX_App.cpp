@@ -53,9 +53,14 @@ public:
 	std::vector< ciUILabelToggle * > togglesDown;
 	std::string					destinationHost;
 	int							destinationPort;
+	float						dim;
+	float						length;
 };
 
 void _TBOX_PREFIX_App::setup() {
+
+	dim = 40;
+	length = getWindowWidth() / 2;
 	gui = new ciUICanvas(0, 0, getWindowWidth(), getWindowHeight());
 	gui->setTheme(CI_UI_THEME_RUSTICORANGE);
 
@@ -116,8 +121,6 @@ void _TBOX_PREFIX_App::setup() {
 	gui->addWidgetRight(new ciUILabelButton(80, false, "connect", CI_UI_FONT_SMALL, 40.0f));
 	// audio
 	gui->addWidgetSouthOf(new ciUILabel("audio", CI_UI_FONT_SMALL), "ip");
-	gui->addWidgetSouthOf(new ciUIWaveform(240, 30, mData, 1024, -1.0, 1.0, "waveform"), "audio");
-	/*gui->addWidgetDown(new ciUISpectrum(240, 30, mData, 1024, -1.0, 1.0, "SPECTRUM"));  */
 	gui->addWidgetSouthOf(new ciUILabel("fps", CI_UI_FONT_SMALL), "waveform");
 
 	mvg = (ciUIMovingGraph *)gui->addWidgetSouthOf(new ciUIMovingGraph(240, 30, mbuffer, 1024, 0, 120, "fpsmvg"), "fps");
@@ -126,15 +129,17 @@ void _TBOX_PREFIX_App::setup() {
 	status = new ciUILabel("status", CI_UI_FONT_SMALL);
 	gui->addWidgetSouthOf(status, "fpsmvg");
 
-	gui->registerUIEvents(this, &CiuiProjectApp::guiEvent);
+	//gui->registerUIEvents(this, &CiuiProjectApp::guiEvent);
 }
 void _TBOX_PREFIX_App::update()
 {
+	gui->update();
 }
 
 void _TBOX_PREFIX_App::draw()
 {
-	gl::clear(Color(0, 0, 0));
+	gl::clear(Color(0, 0, 0));$
+	gui->draw();
 }
 
 CINDER_APP(_TBOX_PREFIX_App, RendererGl)

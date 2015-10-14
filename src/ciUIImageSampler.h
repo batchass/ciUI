@@ -30,12 +30,12 @@
 class ciUIImageSampler : public ciUIImage
 {
 public:
-    ciUIImageSampler(float x, float y, float w, float h, Surface *_image, string _name) : ciUIImage(x, y, w, h, _image, _name)
+	ciUIImageSampler(float x, float y, float w, float h, SurfaceRef _image, string _name) : ciUIImage(x, y, w, h, _image, _name)
     {
         initSampler();
     }
     
-    ciUIImageSampler(float w, float h, Surface *_image, string _name) : ciUIImage(w, h, _image, _name)
+	ciUIImageSampler(float w, float h, SurfaceRef _image, string _name) : ciUIImage(w, h, _image, _name)
     {
         initSampler();
     }    
@@ -61,11 +61,11 @@ public:
     {
         if(draw_fill)
         {			            
-			if(imageSurface != NULL)
+			/*if(imageSurface != NULL)
 			{			   
                 ci::gl::color(1.0f,1.0f,1.0f,1.0f);
-                gl::draw(*imageSurface, Rectf(rect->getX(), rect->getY(), rect->getX()+rect->getWidth(), rect->getY()+rect->getHeight()));
-			}
+                gl::draw(imageSurface, Rectf(rect->getX(), rect->getY(), rect->getX()+rect->getWidth(), rect->getY()+rect->getHeight()));
+			}*/
                                
             float x = rect->getX()+value.x*rect->getWidth();
             float y = rect->getY()+value.y*rect->getHeight();             
